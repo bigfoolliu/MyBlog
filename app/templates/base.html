@@ -1,0 +1,32 @@
+<!--基础模板,让其他的模板可以继承-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		{% if title %}
+		<title>{{title}}-microblog</title>
+		{% else %}
+		<title>microblog</title>
+		{% endif %}
+	</head>
+	<body>
+		<div id="">
+			Microblog: <a href="/index">Home</a>
+		</div>
+		<hr />
+		
+		<!--获取flash函数提供的信息并显示-->
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{message}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+		
+		{% block content %}{% endblock %}
+		
+	</body>
+</html>
